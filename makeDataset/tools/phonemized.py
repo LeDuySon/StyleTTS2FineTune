@@ -5,7 +5,6 @@ from tqdm import tqdm
 # from phonemizer.backend.espeak.wrapper import EspeakWrapper                ## For Windows
 # EspeakWrapper.set_library("C:\Program Files\eSpeak NG\libespeak-ng.dll")  ## For Windows
 
-
 # argument parser
 parser = argparse.ArgumentParser(description="Phonemize transcriptions.")
 parser.add_argument(
@@ -17,7 +16,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-with open("./trainingdata/output.txt", "r") as f:  # Path to output.txt
+with open("dataset/trainingdata/output.txt", "r") as f:  # Path to output.txt
     lines = f.readlines()
 
 # Phonemize the transcriptions
@@ -56,13 +55,13 @@ train_lines = phonemized_lines[: int(len(phonemized_lines) * 0.9)]
 val_lines = phonemized_lines[int(len(phonemized_lines) * 0.9) :]
 
 with open(
-    "./trainingdata/train_list.txt", "w+", encoding="utf-8"
+    "dataset/trainingdata/train_list.txt", "w+", encoding="utf-8"
 ) as f:  # Path for train_list.txt in the training data folder
     for _, line in train_lines:
         f.write(line)
 
 with open(
-    "./trainingdata/val_list.txt", "w+", encoding="utf-8"
+    "dataset/trainingdata/val_list.txt", "w+", encoding="utf-8"
 ) as f:  # Path for val_list.txt in the training data folder
     for _, line in val_lines:
         f.write(line)
